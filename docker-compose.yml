@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # Hardhat Local Blockchain Node
+  blockchain:
+    build:
+      context: ./blockchain
+      dockerfile: Dockerfile
+    container_name: bct-blockchain-node
+    ports:
+      - "8545:8545"
+    networks:
+      - bct-network
+
+  # Python Flask REST API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: bct-backend-api
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - HOST=0.0.0.0
+      - BLOCKCHAIN_RPC_URL=http://blockchain:8545
+      - CONTRACT_ADDRESS=0x5FbDB2315678afecb367f032d93F642f64180aa3
+      - HARDHAT_PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+      - CHAIN_ID=31337
+    depends_on:
+      - blockchain
+    networks:
+      - bct-network
+
+  # React Frontend with Nginx Reverse Proxy
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bct-frontend-app
+    ports:
+      - "80:80"
+      - "5173:80"
+    depends_on:
+      - backend
+    networks:
+      - bct-network
+
+networks:
+  bct-network:
+    driver: bridge
+

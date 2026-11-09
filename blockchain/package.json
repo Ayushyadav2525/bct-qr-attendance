@@ -1,0 +1,16 @@
+{
+  "name": "attendance-blockchain",
+  "version": "1.0.0",
+  "description": "Hardhat blockchain environment for QR Code Attendance Verification Smart Contract",
+  "main": "hardhat.config.cjs",
+  "scripts": {
+    "test": "hardhat test",
+    "compile": "hardhat compile",
+    "node": "hardhat node",
+    "deploy": "hardhat run scripts/deploy.cjs --network localhost"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.22.0"
+  }
+}

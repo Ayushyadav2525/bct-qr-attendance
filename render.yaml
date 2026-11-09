@@ -1,0 +1,35 @@
+services:
+  # Flask Backend REST API
+  - type: web
+    name: bct-attendance-backend
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --bind 0.0.0.0:$PORT run:app
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: BLOCKCHAIN_RPC_URL
+        value: https://rpc.sepolia.org
+      - key: CONTRACT_ADDRESS
+        value: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+
+  # React Frontend (Static Site)
+  - type: web
+    name: bct-attendance-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          name: bct-attendance-backend
+          type: web
+          property: host
+
