@@ -10,8 +10,8 @@ All layers of the application are currently running and communicating with each 
 
 | Component | Status | URL / Port | Details |
 |---|---|---|---|
-| **Frontend** | 🟢 Live | [http://localhost:5173/](http://localhost:5173/) | React 18 + Vite Dev Server |
-| **Backend API** | 🟢 Live | [http://127.0.0.1:5000/api](http://127.0.0.1:5000/api) | Python Flask + SQLite ORM + JWT |
+| **Frontend** | 🟢 Live | [http://localhost:5173/](http://localhost:5173/) / [https://b7ad71d67eeb36.lhr.life](https://b7ad71d67eeb36.lhr.life) | React 18 + Vite Dev Server |
+| **Backend API** | 🟢 Live | [http://127.0.0.1:5000/api](http://127.0.0.1:5000/api) / [https://b7ad71d67eeb36.lhr.life/api](https://b7ad71d67eeb36.lhr.life/api) | Python Flask + SQLite ORM + JWT |
 | **Blockchain Node** | 🟢 Live | [http://127.0.0.1:8545](http://127.0.0.1:8545) | Hardhat Local EVM (Chain ID: 31337) |
 | **Smart Contract** | 🟢 Deployed | `0x5FbDB2315678afecb367f032d93F642f64180aa3` | Solidity 0.8.20 Verification Contract |
 
